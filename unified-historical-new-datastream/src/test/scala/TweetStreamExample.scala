@@ -18,6 +18,7 @@ class TweetStreamExample extends AsyncFreeSpec with Matchers {
       TweetStreamImpl(pollInterval = 1.second, store = tweetStore)
     }
     "should return 5 historical tweets from the past" in {
+      println("Historical")
       tweetSream
         .stream("bruce", start = referenceTime.minusDays(2), end = Some(referenceTime))
         .map(println)
@@ -34,6 +35,7 @@ class TweetStreamExample extends AsyncFreeSpec with Matchers {
 
     val maxTweets = 10
     s"should return an stream of live tweets as they come in (up to $maxTweets)" in {
+      println("Historical + new data stream")
       tweetSream
         .stream("wayne", start = referenceTime.minusDays(2), end = None)
         .take(maxTweets)
