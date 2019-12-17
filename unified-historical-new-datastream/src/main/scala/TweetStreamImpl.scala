@@ -25,7 +25,7 @@ class TweetStreamImpl(pollInterval: FiniteDuration, store: TweetStore) extends T
   }
 
   private def historical(user: String, start: DateTime, end: DateTime): Source[Tweet, NotUsed] = {
-    Source.future(queryBackend(user, start, end)).mapConcat(identity)
+    Source.future(query(user, start, end)).mapConcat(identity)
   }
 
   // IMPROVEMENT: can be more real-time if transformed into consumer of an event log or push events.
@@ -43,13 +43,13 @@ class TweetStreamImpl(pollInterval: FiniteDuration, store: TweetStore) extends T
           }
       }
       .mapAsync(parallelism = 1) {
-        case (start, end) => queryBackend(user, start, end)
+        case (start, end) => query(user, start, end)
       }
       .mapConcat(identity)
       .mapMaterializedValue(_ => NotUsed)
   }
 
-  private def queryBackend(user: String, start: DateTime, end: DateTime): Future[List[Tweet]] = {
+  private def query(user: String, start: DateTime, end: DateTime): Future[List[Tweet]] = {
     store.query(user, start, end)
   }
 

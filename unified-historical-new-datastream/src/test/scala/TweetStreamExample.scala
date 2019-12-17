@@ -27,23 +27,23 @@ class TweetStreamExample extends AsyncFreeSpec with Matchers {
     }
   }
 
-  "Infinite stream with new tweets" - {
-    val tweetSream = {
-      val tweetStore = new StubAutoRefreshingTweetStore(users, referenceTime, scheduler)
-      TweetStreamImpl(pollInterval = 1.second, store = tweetStore)
-    }
-
-    val maxTweets = 10
-    s"should return an stream of live tweets as they come in (up to $maxTweets)" in {
-      println("Historical + new data stream")
-      tweetSream
-        .stream("wayne", start = referenceTime.minusDays(2), end = None)
-        .take(maxTweets)
-        .map(println)
-        .runWith(Sink.seq)
-        .map(_.size shouldBe maxTweets)
-    }
+"Infinite stream with new tweets" - {
+  val tweetStream = {
+    val tweetStore = new StubAutoRefreshingTweetStore(users, referenceTime, scheduler)
+    TweetStreamImpl(pollInterval = 1.second, store = tweetStore)
   }
+
+  val maxTweets = 10
+  s"should return an stream of live tweets as they come in (up to $maxTweets)" in {
+    println("Historical + new data stream")
+    tweetStream
+      .stream("wayne", start = referenceTime.minusDays(2), end = None)
+      .take(maxTweets)
+      .map(println)
+      .runWith(Sink.seq)
+      .map(_.size shouldBe maxTweets)
+  }
+}
 
   private def utcTimeNow(): DateTime = DateTime.now(DateTimeZone.UTC)
 }

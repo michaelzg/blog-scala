@@ -20,12 +20,11 @@ class StubAutoRefreshingTweetStore(users: List[String], referenceTime: DateTime,
   })
 
   def query(user: String, start: DateTime, end: DateTime): Future[List[Tweet]] = {
+    val interval = new Interval(start, end)
     val result = data
       .get(user)
       .map { tweets =>
-        tweets.filter { tweet =>
-          new Interval(start, end).contains(tweet.timestamp)
-        }
+        tweets.filter(t => interval.contains(t.timestamp))
       }
       .getOrElse(List.empty)
     Future.successful(result)
