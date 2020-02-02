@@ -19,10 +19,12 @@ object CookingAppTyped extends App {
       manager ! IntroduceTyped(chef)
 
       chef ! Ingredients(9) // burnt
-      ctx.system.scheduler.scheduleOnce(1 second) {
-        chef ! Ingredients(3)
-        chef ! Ingredients(2)
-      }(ctx.system.executionContext)
+      ctx.system.scheduler.scheduleOnce(delay = 1.second, new Runnable() {
+        override def run(): Unit = {
+          chef ! Ingredients(3)
+          chef ! Ingredients(2)
+        }
+      })(ctx.system.executionContext)
 
       Behaviors.empty
     }

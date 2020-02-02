@@ -6,7 +6,7 @@ scalaVersion := "2.12.8"
 scalacOptions in ThisBuild ++= Seq("-unchecked", "-deprecation")
 cancelable in Global := true
 
-lazy val akkaVersion = "2.5.22"
+lazy val akkaVersion = "2.6.3"
 
 libraryDependencies ++= Seq(
   "com.typesafe.akka" %% "akka-actor" % akkaVersion,

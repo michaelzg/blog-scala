@@ -27,9 +27,9 @@ class ChefTypedSpec extends FeatureSpecLike with GivenWhenThen with Matchers wit
       chef ! ingredients // TODO with probe
 
       Then("the person should remain hungry")
-      sys.scheduler.scheduleOnce(500.millis) {
-        // assert TODO
-      }(sys.executionContext)
+      sys.scheduler.scheduleOnce(500.millis, new Runnable {
+        override def run(): Unit = Unit // assert TODO
+      })(sys.executionContext)
 
       // not sure
       // testkit.returnedBehavior shouldBe hungryPersonTemplate.hungry(Data(9))

@@ -14,7 +14,7 @@ class Manager() extends Actor with ActorLogging with Timers {
 
   def emptyKitchen: Receive = {
     case Introduce(chef: ActorRef) =>
-      timers.startPeriodicTimer("pollTimer", Poll, 500 millis)
+      timers.startTimerWithFixedDelay("pollTimer", Poll, 500 millis)
       context.become(managing(chef))
   }
 
