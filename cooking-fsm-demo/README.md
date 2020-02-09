@@ -8,11 +8,11 @@ This project is for the following blog posts:
 ### Run
 
 ```
-sbt run
+sbt "project fsm" run
 ```
 
 ### Test
 
 ```
-sbt test
+sbt "project fsm" test
 ```

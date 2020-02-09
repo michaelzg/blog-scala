@@ -1,11 +1,11 @@
 package cooking.chef
 
 import akka.actor.typed.Behavior
-import akka.actor.typed.scaladsl.{ ActorContext, Behaviors }
+import akka.actor.typed.scaladsl.Behaviors
 import com.typesafe.scalalogging.StrictLogging
 import cooking.manager.Reply
 
-import scala.util.{ Failure, Success }
+import scala.util.{Failure, Success}
 
 class ChefTyped(customers: Int, skill: CookingSkill) extends StrictLogging {
   val behavior: Behavior[ChefMsg] = cooking(Data(served = 0))

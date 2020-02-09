@@ -8,7 +8,7 @@ real-time data is delivered to the client faster than the polling interval.
 ## Run Tests
 
 ```
-sbt test
+sbt "project uhnd" test
 ```
 
 And you should expect to see an output like the following.
@@ -41,4 +41,5 @@ Historical + new data stream
 [info] Suites: completed 1, aborted 0
 [info] Tests: succeeded 2, failed 0, canceled 0, ignored 0, pending 0
 [info] All tests passed.
-[success] Total time: 11 s, completed Dec 15, 2019 9:31:42 PM```
+[success] Total time: 11 s, completed Dec 15, 2019 9:31:42 PM
+```
