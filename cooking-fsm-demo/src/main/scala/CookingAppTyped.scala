@@ -1,8 +1,11 @@
 import akka.NotUsed
 import akka.actor.typed.scaladsl.Behaviors
-import akka.actor.typed.{ ActorSystem, Behavior }
-import cooking.chef.{ ChefTyped, DistractedNovice, Ingredients }
-import cooking.manager.{ IntroduceTyped, ManagerTyped }
+import akka.actor.typed.{ActorSystem, Behavior}
+import cooking.chef.ChefMsg.Ingredients
+import cooking.chef.ChefTyped
+import cooking.chef.CookingSkill.DistractedNovice
+import cooking.manager.ManagerMsg.IntroduceTyped
+import cooking.manager.ManagerTyped
 
 import scala.concurrent.duration._
 

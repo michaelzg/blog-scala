@@ -1,13 +1,15 @@
 package cooking.manager
 
-import akka.actor.typed.scaladsl.{ Behaviors, TimerScheduler }
-import akka.actor.typed.{ ActorRef, Behavior }
+import akka.actor.typed.scaladsl.{Behaviors, TimerScheduler}
+import akka.actor.typed.{ActorRef, Behavior}
 import akka.util.Timeout
 import com.typesafe.scalalogging.StrictLogging
-import cooking.chef.{ AreYouDone, ChefMsg }
+import cooking.chef.ChefMsg
+import cooking.chef.ChefMsg.AreYouDone
+import cooking.manager.ManagerMsg._
 
 import scala.concurrent.duration._
-import scala.util.{ Failure, Success }
+import scala.util.{Failure, Success}
 
 object ManagerTyped extends StrictLogging {
   val emptyKitchen =

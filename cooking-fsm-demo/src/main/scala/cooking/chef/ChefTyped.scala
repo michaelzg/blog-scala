@@ -3,7 +3,8 @@ package cooking.chef
 import akka.actor.typed.Behavior
 import akka.actor.typed.scaladsl.Behaviors
 import com.typesafe.scalalogging.StrictLogging
-import cooking.manager.Reply
+import cooking.chef.ChefMsg._
+import cooking.manager.ManagerMsg.Reply
 
 import scala.util.{Failure, Success}
 

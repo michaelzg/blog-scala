@@ -1,8 +1,9 @@
 package cooking.chef
 
-import akka.actor.{ Actor, ActorLogging }
+import akka.actor.{Actor, ActorLogging}
 import akka.pattern._
-import cooking.manager.Reply
+import cooking.chef.ChefMsg._
+import cooking.manager.ManagerMsg.Reply
 
 import scala.concurrent.ExecutionContext
 import scala.language.postfixOps

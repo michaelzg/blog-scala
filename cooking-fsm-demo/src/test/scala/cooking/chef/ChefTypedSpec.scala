@@ -1,7 +1,9 @@
 package cooking.chef
 
-import akka.actor.testkit.typed.scaladsl.{ ActorTestKit, BehaviorTestKit, TestProbe }
-import org.scalatest.{ BeforeAndAfterAll, FeatureSpecLike, GivenWhenThen, Matchers }
+import akka.actor.testkit.typed.scaladsl.{ActorTestKit, BehaviorTestKit}
+import cooking.chef.ChefMsg.{CookedFood, Ingredients}
+import cooking.chef.CookingSkill.DistractedNovice
+import org.scalatest.{BeforeAndAfterAll, FeatureSpecLike, GivenWhenThen, Matchers}
 
 import scala.concurrent.duration._
 

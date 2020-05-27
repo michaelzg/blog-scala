@@ -1,10 +1,10 @@
 package cooking.chef
 
-import akka.actor.{ ActorLogging, FSM }
+import akka.actor.{ActorLogging, FSM, Status}
 import akka.pattern._
+import cooking.chef.ChefMsg._
 import cooking.chef.ChefSM.State
-import cooking.manager.Reply
-import akka.actor.Status
+import cooking.manager.ManagerMsg.Reply
 
 import scala.concurrent.ExecutionContext
 

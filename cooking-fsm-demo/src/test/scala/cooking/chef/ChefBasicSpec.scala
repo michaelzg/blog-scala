@@ -1,13 +1,15 @@
 package cooking.chef
 
-import akka.actor.{ ActorRef, ActorSystem, Props }
+import akka.actor.{ActorRef, ActorSystem, Props}
 import akka.pattern.ask
-import akka.testkit.{ ImplicitSender, TestKit }
+import akka.testkit.{ImplicitSender, TestKit}
 import akka.util.Timeout
-import cooking.manager.Reply
+import cooking.chef.ChefMsg.{AreYouDone, Ingredients}
+import cooking.chef.CookingSkill.DistractedNovice
+import cooking.manager.ManagerMsg.Reply
 import org.scalatest._
 import org.scalatest.concurrent.Eventually
-import org.scalatest.time.{ Millis, Span }
+import org.scalatest.time.{Millis, Span}
 
 import scala.concurrent.duration._
 
