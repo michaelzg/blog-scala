@@ -7,8 +7,10 @@ import akka.util.Timeout
 import cooking.chef.ChefMsg.{AreYouDone, Ingredients}
 import cooking.chef.CookingSkill.DistractedNovice
 import cooking.manager.ManagerMsg.Reply
-import org.scalatest._
+import org.scalatest.GivenWhenThen
 import org.scalatest.concurrent.Eventually
+import org.scalatest.featurespec.AsyncFeatureSpecLike
+import org.scalatest.matchers.should.Matchers
 import org.scalatest.time.{Millis, Span}
 
 import scala.concurrent.duration._
@@ -34,8 +36,8 @@ class ChefBasicSpec
   chefCooking(chefSM, "FSM")
 
   def chefCooking(chef: ActorRef, description: String) = {
-    feature(s"$description - A chef can cook food for customers") {
-      scenario("a chef given insufficient food will keep cooking") {
+    Feature(s"$description - A chef can cook food for customers") {
+      Scenario("a chef given insufficient food will keep cooking") {
         Given("only an insufficient amount of ingredients")
         val ingredients = Ingredients(4)
 
@@ -43,7 +45,7 @@ class ChefBasicSpec
         chef ! ingredients
 
         Then("but the chef should remain cooking")
-        implicit val timeout = Timeout(2 seconds)
+        implicit val timeout = Timeout(2.seconds)
         Thread.sleep(500)
         eventually {
           (chef ? AreYouDone).map { reply =>

@@ -31,7 +31,7 @@ class TweetStreamImpl(pollInterval: FiniteDuration, store: TweetStore) extends T
   // IMPROVEMENT: can be more real-time if transformed into consumer of an event log or push events.
   private def periodicPoll(user: String): Source[Tweet, NotUsed] = {
     Source
-      .tick(initialDelay = pollInterval, interval = pollInterval, Unit)
+      .tick(initialDelay = pollInterval, interval = pollInterval, ())
       .statefulMapConcat { () =>
         var bookmark = utcTimeNow()
         _ =>

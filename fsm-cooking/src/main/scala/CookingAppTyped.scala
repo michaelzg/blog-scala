@@ -11,7 +11,7 @@ import scala.concurrent.duration._
 
 object CookingAppTyped extends App {
   val main: Behavior[NotUsed] =
-    Behaviors.setup { ctx ⇒
+    Behaviors.setup { ctx =>
       val manager = ctx.spawn(ManagerTyped.emptyKitchen, "manager")
 
       // Burns food when cooking ingredients with servings over 5

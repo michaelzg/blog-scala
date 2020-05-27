@@ -35,7 +35,7 @@ object CookingApp extends App {
   manager ! Introduce(chef)
 
   chef ! Ingredients(servings = 9) // burnt
-  system.scheduler.scheduleOnce(1 second) {
+  system.scheduler.scheduleOnce(1.second) {
     chef ! Ingredients(servings = 3)
     chef ! Ingredients(servings = 2)
   }(system.dispatcher)

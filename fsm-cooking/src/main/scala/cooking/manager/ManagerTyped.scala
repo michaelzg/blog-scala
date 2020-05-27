@@ -16,7 +16,7 @@ object ManagerTyped extends StrictLogging {
     Behaviors.withTimers[ManagerMsg] { timers =>
       Behaviors.receiveMessagePartial {
         case IntroduceTyped(chef) =>
-          timers.startTimerWithFixedDelay("pollTimer", Poll, 500 millis)
+          timers.startTimerWithFixedDelay("pollTimer", Poll, 500.millis)
           managing(timers, chef)
       }
     }
@@ -24,7 +24,7 @@ object ManagerTyped extends StrictLogging {
   private def managing(timers: TimerScheduler[ManagerMsg], chef: ActorRef[ChefMsg]): Behavior[ManagerMsg] =
     Behaviors.receivePartial {
       case (ctx, Poll) =>
-        implicit val timeout = Timeout(2 seconds)
+        implicit val timeout = Timeout(2.seconds)
         ctx.ask[ChefMsg, ManagerMsg](chef, self => AreYouDone(self)) {
           case Success(reply) =>
             reply

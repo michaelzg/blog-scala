@@ -1,7 +1,8 @@
 import akka.actor.ActorSystem
 import akka.stream.scaladsl.Sink
 import org.joda.time.{DateTime, DateTimeZone}
-import org.scalatest.{AsyncFreeSpec, Matchers}
+import org.scalatest.freespec.AsyncFreeSpec
+import org.scalatest.matchers.should.Matchers
 
 import scala.concurrent.duration._
 

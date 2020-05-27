@@ -1,5 +1,5 @@
 lazy val commonSettings = Seq(
-  scalaVersion := "2.12.8",
+  scalaVersion := "2.13.2",
   scalacOptions in ThisBuild ++= Seq("-unchecked", "-deprecation"),
   cancelable in Global := true)
 
@@ -13,7 +13,7 @@ lazy val commonDependencies = libraryDependencies ++= Seq(
   "ch.qos.logback" % "logback-classic" % "1.2.3",
   "com.typesafe.akka" %% "akka-testkit" % akkaVersion % Test,
   "com.typesafe.akka" %% "akka-actor-testkit-typed" % akkaVersion % Test,
-  "org.scalatest" %% "scalatest" % "3.0.7" % Test)
+  "org.scalatest" %% "scalatest" % "3.1.2" % Test)
 
 lazy val fsm = (project in file("fsm-cooking")).settings(
   name := "fsm-cooking",

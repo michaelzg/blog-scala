@@ -15,13 +15,13 @@ class Manager() extends Actor with ActorLogging with Timers {
 
   def emptyKitchen: Receive = {
     case Introduce(chef: ActorRef) =>
-      timers.startTimerWithFixedDelay("pollTimer", Poll, 500 millis)
+      timers.startTimerWithFixedDelay("pollTimer", Poll, 500.millis)
       context.become(managing(chef))
   }
 
   def managing(chef: ActorRef): Receive = {
     case Poll =>
-      implicit val timeout = Timeout(2 seconds)
+      implicit val timeout = Timeout(2.seconds)
       pipe(chef ? AreYouDone) to self
     case Reply(served, isDone) =>
       if (isDone) {
