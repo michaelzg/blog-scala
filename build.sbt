@@ -15,8 +15,8 @@ lazy val commonDependencies = libraryDependencies ++= Seq(
   "com.typesafe.akka" %% "akka-actor-testkit-typed" % akkaVersion % Test,
   "org.scalatest" %% "scalatest" % "3.0.7" % Test)
 
-lazy val fsm = (project in file("cooking-fsm-demo")).settings(
-  name := "cooking-fsm-demo",
+lazy val fsm = (project in file("fsm-cooking")).settings(
+  name := "fsm-cooking",
   version := "1.0",
   commonSettings,
   commonDependencies)
